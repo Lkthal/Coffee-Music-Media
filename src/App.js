@@ -7,8 +7,12 @@ import Library from './components/Library';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="App">
         <header >
+          <nav>
+            <Link to='/'>Landing</Link>
+            <Link to='/Library'>Library</Link>
+          </nav>
           <h1>Bloc Jams</h1>
         </header>
         <main>

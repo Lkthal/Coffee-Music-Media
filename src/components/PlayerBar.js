@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
+import './styles/playerbar.css';
+
 
 class PlayerBar extends Component {
   render() {
     console.log("stringVolume", this.props.duration);
     return (
       <section className="player-bar">
-        <section id="buttons">
-       <button id="previous" onClick={this.props.handlePrevClick}>
+        <section className="btn-group" id="buttons">
+       <button className="btn btn-primary" id="previous" onClick={this.props.handlePrevClick}>
          <span className="ion-skip-backward"></span>
        </button>
-       <button id="play-pause" onClick={this.props.handleSongClick}>
+       <button className="btn btn-primary" id="play-pause" onClick={this.props.handleSongClick}>
          <span className={this.props.isPlaying ? 'ion-pause' :'ion-play'}> </span>
        </button>
-       <button id="next" onClick={this.props.handleNextClick}>
+       <button className="btn btn-primary" id="next" onClick={this.props.handleNextClick}>
          <span className="ion-skip-forward"></span>
        </button>
        </section>

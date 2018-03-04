@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import Landing from './components/Landing';
 import Library from './components/Library';
 import Album from './components/Album';
+
 
 
 
@@ -12,13 +13,16 @@ class App extends Component {
     return (
       <div className="App">
         <header >
-          <nav>
-            <Link to='/'>Landing</Link>
-            <Link to='/Library'>Library</Link>
-            <Link to='/Album'>Album</Link>
-          </nav>
-          <h1>Bloc Jams</h1>
+        <div className="Container">
+          <ul className = "nav nav-tabs">
+            <li class="active"><a href="/">Landing</a></li>
+            <li class="active"><a href="/Library">Library</a></li>
+            <li class="active"><a href="/Album">Album</a></li>
+          </ul>
+          </div>
+          <h1 className="lg">Bloc Jams</h1>
         </header>
+
         <main>
           <Route exact path="/" component={Landing} />
           <Route path="/library" component={Library} />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
 import PlayerBar from './PlayerBar';
+import './styles/album.css';
 
 class Album extends Component {
   constructor(props) {
@@ -16,7 +17,9 @@ class Album extends Component {
       currentTime: 0,
       volume: 0.8,
       duration: album.songs[0].duration,
-      isPlaying: false
+      isPlaying: false,
+      isHovering:false
+
     };
 
     this.audioElement = document.createElement('audio');
@@ -67,6 +70,31 @@ class Album extends Component {
       }
     }
 
+    formatTime(time) {
+      	if (isNaN(time)) {
+           return "-:--";
+      	}
+      	else {
+      	  let minutes = Math.floor(time / 60);
+      	  let seconds = Math.floor(time % 60);
+      	  if (seconds < 10) {
+      	  	seconds = "0" + seconds;
+      	  }
+      	  let formattedTime = String(minutes)+":"+String(seconds);
+      	  return formattedTime;
+      	}
+      }
+
+    handleSongHoverEnd() {
+        console.log("left");
+        this.setState({isHovering: false});
+      }
+
+    handleSongHoverStart(song) {
+        console.log("entered");
+        this.setState({isHovering:true});
+        console.log(song);
+       }
   handlePrevClick(){
     const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
     const newIndex = Math.max(0, currentIndex - 1);
@@ -99,18 +127,35 @@ class Album extends Component {
     this.soundObject.setVolume(percent); */
   }
 
+  renderButtons(song, index) {
+      if (this.state.currentSong === song) {
+      	if (this.state.isPlaying === true) {
+      		return <span className="ion-pause"></span>;
+      	}
+      	else{
+            return <span className="ion-play"></span>;
+      	}
+
+      }
+      else {
+     		return <div><span className="songNumber">{index+1}</span> <span className="ion-play hoverSongRowControl"></span></div>;
+       }
+
+   }
+
+
   render() {
     return (
       <section className="album">
         <section id="album-info">
-            <img id="album-cover-art" src={this.state.album.albumCover} />
+            <img className="img-circle" id="album-cover-art" src={this.state.album.albumCover} />
             <div className="album-details">
-              <h1 id="album-title">{this.state.album.title}</h1>
+              <h1 className="h1" id="album-title">{this.state.album.title}</h1>
               <h2 className="artist">{this.state.album.artist}</h2>
               <div id="release-info">{this.state.album.releaseInfo}</div>
             </div>
           </section>
-          <table id="song-list">
+          <table id="song-list" className="table table-condensed">
             <colgroup>
               <col id="song-number-column" />
               <col id="song-title-column" />
@@ -120,11 +165,7 @@ class Album extends Component {
             {this.state.album.songs.map( (song, index) =>
               <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
                 <td className="song-actions">
-                  <button>
-                    <span className="song-number"> { index + 1 } </span>
-                  {/* <span className="ion-play"> </span>
-                    <span className="ion-pause"> </span> */}
-                  </button>
+                  {this.renderButtons(song, index)}
                 </td>
                 <td className="song-title">{song.title}</td>
                 <td className="song-duration">{song.duration}</td>
@@ -136,7 +177,7 @@ class Album extends Component {
         <PlayerBar
            isPlaying={this.state.isPlaying}
            currentSong={this.state.currentSong}
-           currentTime={this.audioElement.currentTime}
+           currentTime={this.formatTime(this.audioElement.currentTime)}
            duration={this.audioElement.duration}
            volume={this.state.volume}
            handleSongClick={() => this.handleSongClick(this.state.currentSong)}
@@ -146,6 +187,7 @@ class Album extends Component {
            handleVolumeChange={(e) => this.handleVolumeChange(e)}
           />
         </section>
+
     );
   }
 }

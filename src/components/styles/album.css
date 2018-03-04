@@ -1,0 +1,32 @@
+
+#song-list {
+  border-collapse: collapse;
+  clear: both;
+  font-weight: 100;
+  margin: 3rem auto 0 auto;
+  overflow: hidden;
+  width: 50%;
+}
+
+#song-number-column {
+  width: 40px;
+}
+#song-duration-column {
+  width: 80px;
+}
+
+tr.song:hover {
+	cursor:pointer;
+}
+
+tr.song .hoverSongRowControl {
+	display:none;
+}
+
+tr.song:hover .hoverSongRowControl {
+	display:block;
+}
+
+tr.song:hover .songNumber {
+	display:none;
+}

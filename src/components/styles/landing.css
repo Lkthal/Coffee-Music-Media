@@ -7,11 +7,12 @@
 	padding-top: 20px;
 }
 
-
-.cta {
-	margin-top: 50px;
-}
-
 .landing {
+	padding-top: 50px;
 	padding-bottom: 50px;
+	color: white;
+	height: 500px;
+	 background-image: url("./musicFest.jpg");
+	 background-size: cover;
+	 background-position: center;
 }

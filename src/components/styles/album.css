@@ -6,13 +6,16 @@
   margin: 3rem auto 0 auto;
   overflow: hidden;
   width: 50%;
+  color: white;
 }
 
 #song-number-column {
   width: 40px;
+  color: white;
 }
 #song-duration-column {
   width: 80px;
+  color: white;
 }
 
 tr.song:hover {

@@ -148,7 +148,7 @@ class Album extends Component {
     return (
       <section className="album">
         <section id="album-info">
-            <img className="img-circle" id="album-cover-art" src={this.state.album.albumCover} />
+            <img className="img-circle" id="album-cover-art" src={this.state.album.albumCover} alt="albumcover"/>
             <div className="album-details">
               <h1 className="h1" id="album-title">{this.state.album.title}</h1>
               <h2 className="artist">{this.state.album.artist}</h2>
@@ -168,7 +168,7 @@ class Album extends Component {
                   {this.renderButtons(song, index)}
                 </td>
                 <td className="song-title">{song.title}</td>
-                <td className="song-duration">{song.duration}</td>
+                <td className="song-duration">{this.formatTime(song.duration)}</td>
               </tr>
             )}
 
@@ -178,7 +178,8 @@ class Album extends Component {
            isPlaying={this.state.isPlaying}
            currentSong={this.state.currentSong}
            currentTime={this.formatTime(this.audioElement.currentTime)}
-           duration={this.audioElement.duration}
+           duration={this.formatTime(this.audioElement.duration)}
+           seekValue={this.audioElement.currentTime / this.audioElement.duration}
            volume={this.state.volume}
            handleSongClick={() => this.handleSongClick(this.state.currentSong)}
            handlePrevClick={() => this.handlePrevClick()}

@@ -1,3 +1,8 @@
+## Coffee Music Media
+
+Smooth jazz puts people in the mood to study, relax, and enjoy being in the moment. The music application feature music that will allow people to put their mind at ease. The application was part of the bloc curriculum and I further expand on it by adding more music and will continue to implement new features in the future. 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
